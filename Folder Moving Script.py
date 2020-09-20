@@ -19,7 +19,6 @@ print ("Destination path is:" + dest)
 
 
 folders = os.listdir(path)
-#porn is each directory in Sorted Doujins
 for folder in folders:
         folderName = input("Enter Full name of file or keyword in filename:\n")
         if folderName.lower() in folder.lower():
