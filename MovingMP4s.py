@@ -21,8 +21,8 @@ for creator in creator_folders:
             print(dest + '\n')
             #if statement to check if duplicate exists
             if os.path.exists(source_dir + '/' + video) and os.path.exists(dest_dir + '/' + creator + '/' + video):
-                #os.remove(source_dir + '/' + video) this is for video moving
-                shutil.rmtree(source_dir + '/' + video)
+                #os.remove(source_dir + '/' + video) this is for video removing
+                shutil.rmtree(source_dir + '/' + video) #this is removing for folders
                 print(video + 'deleted due to being a duplicate\n')
             else:
                 shutil.move(src, dest)
