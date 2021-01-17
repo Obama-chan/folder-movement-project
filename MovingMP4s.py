@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-
+#Moving MP4s
 import os
 import sys
 import shutil
@@ -22,8 +21,9 @@ for creator in creator_folders:
             print(dest + '\n')
             #if statement to check if duplicate exists
             if os.path.exists(source_dir + '/' + video) and os.path.exists(dest_dir + '/' + creator + '/' + video):
-                shutil.rmtree(source_dir + '/' + video) #Removes duplicate folder
+                os.remove(source_dir + '/' + video)
                 print(video + ' deleted due to being a duplicate\n')
             else:
                 shutil.move(src, dest)
                 print(video + ' has been successfully moved\n')
+                
