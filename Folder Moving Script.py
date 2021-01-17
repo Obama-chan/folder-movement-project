@@ -10,20 +10,30 @@ dest_dir = sys.argv[2]
 
 print(source_dir)
 print(dest_dir)
+print()
 
 creator_folders = os.listdir(dest_dir)
 for creator in creator_folders:
-    for video in os.listdir(source_dir):
-        if creator.lower() in video.lower():
-            print('check')
-            src = os.path.join(source_dir, video)
-            print(src + '\n')
+    for filename in os.listdir(source_dir):
+        if creator.lower() in filename.lower():
+
+            src = os.path.join(source_dir, filename)
             dest = os.path.join(dest_dir, creator)
-            print(dest + '\n')
-            #if statement to check if duplicate exists
-            if os.path.exists(source_dir + '/' + video) and os.path.exists(dest_dir + '/' + creator + '/' + video):
-                shutil.rmtree(source_dir + '/' + video) #Removes duplicate folder
-                print(video + ' deleted due to being a duplicate\n')
+
+            print(src)
+            print(dest)
+
+            if os.path.exists(os.path.join(dest, filename)):
+                # need to delete a duplicate
+                if os.path.isdir(src):
+                    # dealing with a torrent directory
+                    shutil.rmtree(src)
+                else:
+                    # dealing with a regular file
+                    os.remove(src)
+
+                print(filename + ' deleted due to being a duplicate\n')
             else:
+                # just move it
                 shutil.move(src, dest)
-                print(video + ' has been successfully moved\n')
+                print(filename + ' has been successfully moved\n')
